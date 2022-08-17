@@ -15,12 +15,12 @@ const calculateOrderAmount = (items) => {
  */
 
 router.post('/create-payment-intent', async (req, res) => {
-    // todo 根据传回的信息计算价格 此处的价格为*100后的数 。比如10.99美元，此处应为1099
+    // todo 根据传回的信息计算价格 此处的价格为*100后的数 。比如10.99英镑，此处应为1099
     const { items } = req.body;
     const paymentIntent = await stripe.paymentIntents.create({
         amount: calculateOrderAmount(items),
         currency: "gbp",
-        payment_method_types: ["card",'alipay','wechat_pay'],
+        payment_method_types: ["card",'alipay','wechat_pay'],//卡，支付宝，微信支付
     });
 
     res.send({
